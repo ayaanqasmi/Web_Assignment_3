@@ -22,7 +22,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'required',
             'url' => 'required|url',
             'description' => 'required|string|max:500',
         ]);

@@ -15,10 +15,11 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('name');
             $table->string('url');
             $table->text('description');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
         Schema::create('tutorials', function (Blueprint $table) {
             $table->id();
@@ -28,7 +29,7 @@ return new class extends Migration
         });
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('summary');
             $table->string('icon');
             $table->text('description');
             $table->timestamps();
