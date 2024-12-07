@@ -57,7 +57,7 @@ class ServiceController extends Controller
       
 
         // Update other service details
-        $service->url = $request->summary;
+        $service->summary = $request->summary;
         $service->description = $request->description;
         $service->icon=$request->icon;
         $service->save();

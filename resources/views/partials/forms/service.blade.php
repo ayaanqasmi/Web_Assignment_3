@@ -1,29 +1,28 @@
-<form id="serviceForm">
+<form class="serviceForm">
     @csrf
+    <input type="hidden" name="id" value="{{ $id }}">
     <div>
         <label for="summary">Service summary:</label>
-        <input type="text" id="summary" name="summary" required>
+        <input type="text" id="summary" name="summary" >
     </div>
     <div>
         <label for="icon">FontAwesome Icon:</label>
-        <input type="text" id="icon" name="icon" required placeholder="e.g., fas fa-cog">
+        <input type="text" id="icon" name="icon"  placeholder="e.g., fas fa-cog">
     </div>
     <div>
         <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
+        <textarea id="description" name="description" ></textarea>
     </div>
-    <button type="submit" class="btn">Create Service</button>
+    <button type="submit" class="btn"> {{ $id ? 'Update Service' : 'Create Service' }}</button>
+    @if ($id)
+    <button type="submit" class="btn btn-danger deleteServiceButton" style="margin-top: 10px; background: #dc3545;" id-to-delete="{{ $id }}">
+        Delete Service
+    </button>
+    @endif
 </form>
-<div id="responseMessage"></div>
+<div class="responseMessage"></div>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 20px;
-        background-color: #f8f9fa;
-    }
-
+   
     #serviceForm {
         max-width: 400px;
         margin: 0 auto;
@@ -72,6 +71,9 @@
         cursor: pointer;
         text-align: center;
     }
+    .btn-danger {
+        background: #dc3545;
+    }
 
     .btn:hover {
         background: #0056b3;
@@ -83,35 +85,4 @@
         text-align: center;
     }
 </style>
-<script>
-    document.getElementById('serviceForm').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
 
-        const form = event.target;
-        const formData = new FormData(form);
-
-        try {
-            const response = await fetch('/api/services', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-                    'Accept': 'application/json',
-                },
-                body: formData,
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                document.getElementById('responseMessage').innerText = 'Service created successfully!';
-                form.reset(); 
-                window.location.reload();
-              
-            } else {
-                document.getElementById('responseMessage').innerText = `Error: ${result.message}`;
-            }
-        } catch (error) {
-            document.getElementById('responseMessage').innerText = `Error: ${error.message}`;
-        }
-    });
-</script>
