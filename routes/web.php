@@ -10,11 +10,6 @@ Route::get('/services', function () {
     $tutorials = Tutorial::all(); 
     return view('pages.services',['services'=>$services,'tutorials'=>$tutorials]);
 });
-
-Route::get('/test',function(){
-    return view('pages.add');
-});
-
 use App\Http\Controllers\TestimonialController;
 
 Route::prefix('api/testimonials')->group(function () {

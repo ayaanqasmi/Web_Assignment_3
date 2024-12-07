@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function index()
+    {
+        $tutorials = Service::all();
+        return response()->json($tutorials);
+    }
     // Store a new service
     public function store(Request $request)
     {
@@ -20,7 +25,7 @@ class ServiceController extends Controller
 
         // Create the service record
         $service = Service::create([
-            'summary' => $request->url,
+            'summary' => $request->summary,
             'icon' => $request->icon, // Store the path of the uploaded icon
             'description' => $request->description,
         ]);
@@ -35,12 +40,8 @@ class ServiceController extends Controller
         return response()->json($service);
     }
 
-    // Display a list of all services
-    public function index()
-    {
-        $services = Service::all();
-        return response()->json($services);
-    }
+   
+   
 
     // Update an existing service
     public function update(Request $request, $id)
@@ -48,15 +49,15 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         $request->validate([
-            'summary' => 'required|url',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'summary' => 'required|string',
+            'icon' => 'required|string',
             'description' => 'required|string|max:1000',
         ]);
 
       
 
         // Update other service details
-        $service->url = $request->url;
+        $service->url = $request->summary;
         $service->description = $request->description;
         $service->icon=$request->icon;
         $service->save();

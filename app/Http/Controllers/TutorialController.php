@@ -13,7 +13,7 @@ class TutorialController extends Controller
     public function index()
     {
         $tutorials = Tutorial::all();
-        return view('tutorials.index', compact('tutorials'));
+        return response()->json($tutorials);
     }
 
     /**
@@ -34,13 +34,14 @@ class TutorialController extends Controller
             'title' => 'required',
         ]);
 
-        $tutorial = new Tutorial([
-            'url' => $request->get('url'),
-            'title' => $request->get('title'),
-        ]);
-        $tutorial->save();
 
-        return redirect('/tutorials')->with('success', 'Tutorial saved!');
+
+        $tutorial = Tutorial::create([
+            'url' => $request->url,
+            'title' => $request->title
+        ]);
+
+        return response()->json(['message' => 'Totorial added successfully!', 'service' => $tutorial], 201);
     }
 
     /**
@@ -49,17 +50,9 @@ class TutorialController extends Controller
     public function show($id)
     {
         $tutorial = Tutorial::find($id);
-        return view('tutorials.show', compact('tutorial'));
+        return response()->json($tutorial);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $tutorial = Tutorial::find($id);
-        return view('tutorials.edit', compact('tutorial'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -76,7 +69,8 @@ class TutorialController extends Controller
         $tutorial->title = $request->get('title');
         $tutorial->save();
 
-        return redirect('/tutorials')->with('success', 'Tutorial updated!');
+        
+        return response()->json(['message' => 'Tutorial updated successfully!', 'tutorial' => $tutorial]);
     }
 
     /**
@@ -87,6 +81,6 @@ class TutorialController extends Controller
         $tutorial = Tutorial::find($id);
         $tutorial->delete();
 
-        return redirect('/tutorials')->with('success', 'Tutorial deleted!');
+        return response()->json(['message' => 'Tutorial deleted successfully!']);
     }
 }
