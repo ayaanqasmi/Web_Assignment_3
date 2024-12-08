@@ -25,6 +25,7 @@ class TestimonialController extends Controller
             'user_id' => 'required',
             'url' => 'required|url',
             'description' => 'required|string|max:500',
+            'name' => 'required|string|max:255', // Added name field validation
         ]);
 
         $testimonial = Testimonial::create($validatedData);
@@ -60,6 +61,7 @@ class TestimonialController extends Controller
         $validatedData = $request->validate([
             'url' => 'nullable|url',
             'description' => 'nullable|string|max:500',
+            'name' => 'nullable|string|max:255', // Added name field validation
         ]);
 
         $testimonial->update($validatedData);
@@ -83,4 +85,3 @@ class TestimonialController extends Controller
         return response()->json(['message' => 'Testimonial deleted successfully.']);
     }
 }
-
