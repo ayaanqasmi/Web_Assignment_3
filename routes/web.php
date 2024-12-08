@@ -8,10 +8,21 @@ use App\Models\Tutorial;
 Route::get('/services', function () {
     $services = Service::all(); 
     $tutorials = Tutorial::all(); 
-    return view('pages.services',['services'=>$services,'tutorials'=>$tutorials]);
+    $auth=true;//conditionally render forms for CRUD
+    return view('pages.services',['services'=>$services,'tutorials'=>$tutorials,'auth'=>$auth]);
 });
-Route::get('/test', function () {
-    return view('partials.forms.service',['id'=>4]);
+Route::get('/about', function () {
+    $testimonials=Testimonial::all();
+    $auth=true;
+    return view('pages.about',['testimonials'=>$testimonials,'auth'=>$auth]);
+    
+});
+Route::get('/contact', function () {
+    return view('pages.contact');
+    
+});
+Route::get('/', function () {
+    return view('pages.home');
     
 });
 use App\Http\Controllers\TestimonialController;

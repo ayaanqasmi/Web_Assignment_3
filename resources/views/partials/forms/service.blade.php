@@ -23,7 +23,7 @@
 <div class="responseMessage"></div>
 <style>
    
-    #serviceForm {
+    .serviceForm {
         max-width: 400px;
         margin: 0 auto;
         padding: 20px;

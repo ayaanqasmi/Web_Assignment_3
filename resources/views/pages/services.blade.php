@@ -12,16 +12,20 @@
       <div class="service">
 
         <i class="{{ $service->icon }} service__icon"></i>
+        @if ($auth)
         <i class="fas fa-pen edit"></i>
+        @endif
         <div class="service_content">
 
           <h3 class="service__title">{{ $service->title }}</h3>
           <p class="service__description">{{ $service->summary }}</p>
           <a href="#" class="service__cta link__hover-effect link__hover-effect--white" data-service-details="{{ $service->description }}">Learn More</a>
         </div>
+        @if ($auth)
         <div class="service__edit--form hidden">
           @include('partials.forms.service',['id'=>$service->id])
         </div>
+        @endif
       </div>
       @endforeach
 
@@ -31,8 +35,9 @@
       </div>
 
     </section>
-
+    @if($auth)
     @include('partials.forms.service',['id'=>""])
+    @endif
 
     <section id="tutorial" class="tutorial">
       <h1 class="services_section-title">Graphic Design Tutorials</h1>
@@ -47,8 +52,9 @@
         @endforeach
       </ul>
     </section>
-
+    @if($auth)
     @include('partials.forms.tutorial')
+    @endif
   </main>
   <script src="{{ asset('js/updateform.js') }}" ></script>
   <script src="{{ asset('js/serviceform.js') }}" ></script>
