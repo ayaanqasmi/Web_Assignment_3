@@ -16,7 +16,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/services', function () {
     $services = Service::all(); 
     $tutorials = Tutorial::all(); 
-    $auth = auth()->check();
+    //$auth = auth()->check();
+    $auth=true;
     return view('pages.services',['services'=>$services,'tutorials'=>$tutorials,'auth'=>$auth]);
 });
 Route::get('/about', function () {

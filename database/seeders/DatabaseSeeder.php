@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\Tutorial;
+use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -105,6 +106,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Bob Williams',
             'url' => 'https://media.licdn.com/dms/image/v2/D4E03AQFdbG5nslDIzA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729110695183?e=1738800000&v=beta&t=mCMZrLRGhnym209YobwJM-_049PXxJUVRs3MFgpaHBE',
             'description' => 'This is a testimonial from Bob Williams.',
+        ]);
+        User::create([
+            'name' => 'Justine Batter',
+            'email' => 'justine@gmail.com',
+            'password' =>'123',
         ]);
     }
 }

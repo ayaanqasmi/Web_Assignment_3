@@ -1,24 +1,25 @@
-<form class="serviceForm">
+<form class="serviceForm serviceCreate">
     @csrf
+ 
     <div>
         <label for="summary">Service summary:</label>
-        <input type="text" id="summary" name="summary" value="{{$service->summary}}">
+        <input type="text" id="summary" name="summary" >
     </div>
     <div>
         <label for="icon">FontAwesome Icon:</label>
-        <input type="text" id="icon" name="icon"  placeholder="e.g., fas fa-cog" value="{{$service->icon}}">
+        <input type="text" id="icon" name="icon" placeholder="e.g., fas fa-cog">
     </div>
     <div>
         <label for="description">Description:</label>
-        <textarea id="description" name="description" value="{{$service->description}}"></textarea>
+        <textarea id="description" name="description"></textarea>
     </div>
-    <button type="submit" class="btn" id-to-update="{{$service->id}}" > {{ $service ? 'Update Service' : 'Create Service' }}</button>
-    @if ($id)
-    <button type="input" class="btn btn-danger deleteServiceButton" style="margin-top: 10px; background: #dc3545;" id-to-delete="{{ $id }}">
-        Delete Service
+    
+    <button type="submit" class="btn createServiceButton" >
+        Create Service
     </button>
-    @endif
+   
 </form>
+
 <div class="responseMessage"></div>
 <style>
    

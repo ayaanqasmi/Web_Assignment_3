@@ -1012,7 +1012,7 @@ body.bold-text {
 
 
 
-.testimonial__delete{
+.testimonial__delete,.tutorial__delete{
   color: red;
   margin: 16px;
   transition: all 300ms ease ;

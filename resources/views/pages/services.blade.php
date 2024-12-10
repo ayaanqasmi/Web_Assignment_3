@@ -23,7 +23,7 @@
         </div>
         @if ($auth)
         <div class="service__edit--form hidden">
-          @include('partials.forms.service',['service'=>$service])
+          @include('partials.forms.serviceupdate',['service'=>$service])
         </div>
         @endif
       </div>
@@ -36,7 +36,7 @@
 
     </section>
     @if($auth)
-    @include('partials.forms.service',['service'=>""])
+    @include('partials.forms.service')
     @endif
 
     <section id="tutorial" class="tutorial">
@@ -46,6 +46,9 @@
         {{-- Loop through tutorials --}}
         @foreach($tutorials as $tutorial)
         <li class="tutorial__item">
+          @if($auth)
+          <i class="fas fa-x tutorial__delete" id-to-delete="{{ $tutorial->id }}"></i>
+          @endif
           <h2 class="tutorial__link">{{ $tutorial->title }}</h2>
           <iframe src="{{ $tutorial->url }}" frameborder="0"></iframe>
         </li>
@@ -56,7 +59,7 @@
     @include('partials.forms.tutorial')
     @endif
   </main>
-  <script src="{{ asset('js/updateform.js') }}" ></script>
-  <script src="{{ asset('js/serviceform.js') }}" ></script>
+  <script src="{{ asset('js/updateform.js') }}"></script>
+  <script src="{{ asset('js/serviceform.js') }}"></script>
 </body>
 @endsection
