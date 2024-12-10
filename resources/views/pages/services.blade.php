@@ -23,7 +23,7 @@
         </div>
         @if ($auth)
         <div class="service__edit--form hidden">
-          @include('partials.forms.service',['id'=>$service->id])
+          @include('partials.forms.service',['service'=>$service])
         </div>
         @endif
       </div>
@@ -36,7 +36,7 @@
 
     </section>
     @if($auth)
-    @include('partials.forms.service',['id'=>""])
+    @include('partials.forms.service',['service'=>""])
     @endif
 
     <section id="tutorial" class="tutorial">
