@@ -29,7 +29,9 @@
                     <p>
                         "{{ $testimonial->description }}" - {{ $testimonial->name }}
                     </p>
+                    @if($auth)
                     <i class="fas fa-x testimonial__delete" id-to-delete="{{ $testimonial->id }}"></i>
+                    @endif
                 </blockquote>
                 
             @endforeach
